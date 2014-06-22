@@ -17,9 +17,9 @@ else()
     message(FATAL_ERROR "CPM requires Git.")
   endif()
   if (NOT EXISTS ${CPM_DIR}/CPM.cmake)
-    message(STATUS "Cloning repo (https://github.com/iauns/cpm)")
+    message(STATUS "Cloning repo (https://github.com/CIBC-Internal/cpm)")
     execute_process(
-      COMMAND "${GIT_EXECUTABLE}" clone https://github.com/iauns/cpm ${CPM_DIR}
+      COMMAND "${GIT_EXECUTABLE}" clone https://github.com/CIBC-Internal/cpm ${CPM_DIR}
       RESULT_VARIABLE error_code
       OUTPUT_QUIET ERROR_QUIET)
     if(error_code)
