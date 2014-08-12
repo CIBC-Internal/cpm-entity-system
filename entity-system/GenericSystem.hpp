@@ -55,6 +55,8 @@ void call(ESCoreBase& core, uint64_t sequence, C c, F f, Tuple && t)
 
 }
 
+// Unfortunately, this part still does not compile in VS2013. Seems safe to comment out.
+#ifndef WIN32
 /// See: http://stackoverflow.com/questions/18986560/check-variadic-templates-parameters-for-uniqueness?lq=1
 /// The mpl namespace contains everything to implement is_unique. It is used in
 /// the static assertion at the beginning of GenericSystem below.
@@ -72,7 +74,7 @@ struct is_unique_impl<B, T, U...> : if_t< std::is_base_of< id<T>, B>, std::false
 
 template< class ...T >struct is_unique : is_unique_impl< empty, T ... > {};
 } // mpl    
-
+#endif
 
 /// Base class implementation of generic system. You do not need instances of
 /// this class in order to use it. All important functions are static.
@@ -80,9 +82,9 @@ template <bool GroupComponents, typename... Ts>
 class GenericSystem : public BaseSystem
 {
 public:
-
+#ifndef WIN32
   static_assert(mpl::is_unique<Ts...>::value, "GenericSystem does not allow duplicate component types.");
-
+#endif
   GenericSystem()           {}
   virtual ~GenericSystem()  {}
 
