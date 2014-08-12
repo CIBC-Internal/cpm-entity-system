@@ -2,6 +2,7 @@
 #define IAUNS_ENTITY_SYSTEM_BASESYSTEM_HPP
 
 #include <vector>
+#include <cstdint>
 
 namespace CPM_ES_NS {
 
